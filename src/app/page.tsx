@@ -1,9 +1,12 @@
+import Banner from "@/components/homepage/Banner";
+import Library from "@/components/homepage/Library";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <div>
-      <h1 className="bg-amber-300">Home Page</h1>
+        <Banner/>
+        <Library/>
     </div>
   );
 }
