@@ -1,10 +1,16 @@
-import React from "react";
+
+'use client'
+import { useContext } from "react";
 import Image from "next/image";
 
 import logo from "@/assets/logo.png";
 import Link from "next/link";
+import { WorkoutContext } from "@/context/WorkoutContext";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+    const { myPlan, savedPlan } = useContext(WorkoutContext);
+    const pathname = usePathname();
     return (
         <header className="sticky top-0 z-50  bg-[#0C0D10] backdrop-blur-md">
             <div className="navbar mx-auto w-full max-w-7xl px-6 py-3">
@@ -41,24 +47,37 @@ const Navbar = () => {
                     </div>
 
                     {/* Logo */}
-                    <a className="flex items-center gap-2 cursor-pointer">
+                    <Link href="/" className="flex items-center gap-2 cursor-pointer">
                         <Image src={logo} alt="FitLog Logo" className="h-10 w-10" />
                         <span className="text-2xl font-bold text-[#FFFFFF]">
                             FITLOG
                         </span>
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Center Menu */}
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal gap-2 px-1">
                         <li>
-                            <Link href="/" className="rounded-full px-4 py-2 text-[#C2F800] bg-[#1a2310] hover:bg-green-50 hover:text-[#23BE0A]">
+                            <Link
+                                href="/"
+                                className={`rounded-full px-4 py-2 transition ${pathname === "/"
+                                        ? "bg-[#1a2310] text-[#C2F800]"
+                                        : "text-white hover:bg-[#1a2310] hover:text-[#C2F800]"
+                                    }`}
+                            >
                                 Workouts
                             </Link>
                         </li>
-                        <li className="text-[#9CA3AF]">
-                            <Link href="/my-plan" className="rounded-full px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-[#23BE0A]">
+
+                        <li>
+                            <Link
+                                href="/my-plan"
+                                className={`rounded-full px-4 py-2 transition ${pathname === "/my-plan"
+                                        ? "bg-[#1a2310] text-[#C2F800]"
+                                        : "text-white hover:bg-[#1a2310] hover:text-[#C2F800]"
+                                    }`}
+                            >
                                 My Plan
                             </Link>
                         </li>
@@ -68,28 +87,26 @@ const Navbar = () => {
                 {/* Right Buttons */}
                 <div className="navbar-end gap-3">
 
-                    <div className="flex items-center gap-3">
+                    <Link href={"/my-plan"} className="flex items-center gap-3">
                         <span className="text-base font-medium text-[#9CA3AF]">
                             Plan
                         </span>
 
                         <span className="flex h-7 w-7 items-center justify-center rounded-full bg-lime-400 text-sm font-bold text-black">
-                            0
+                            {myPlan.length}
                         </span>
-                    </div>
+                    </Link>
 
-                    <div className="flex items-center gap-3">
+                    <Link href={"/my-plan"} className="flex items-center gap-3">
                         <span className="text-base font-medium text-[#9CA3AF]">
                             Saved
                         </span>
 
                         <span className="flex h-7 w-7 items-center justify-center rounded-full border border-[#D1D5DB] text-sm font-bold text-white">
-                            0
+                            {savedPlan.length}
                         </span>
-                    </div>
-
+                    </Link>
                 </div>
-
             </div>
         </header>
     );

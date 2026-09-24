@@ -4,9 +4,13 @@ import Link from 'next/link';
 import React from 'react';
 import { FaClock, FaFire, FaStar } from 'react-icons/fa';
 
-const WorkoutCard = ({ workout }: { workout: IWorkout }) => {
+interface IWorkoutCardProps {
+    workout: IWorkout
+}
+
+const WorkoutCard = ({ workout }: IWorkoutCardProps) => {
     return (
-        <Link href={'/workouts/1'}>
+        <Link href={`/workouts/${workout.id}`}>
             <div
                 key={workout.id}
                 className="overflow-hidden rounded-2xl border border-[#292C31] bg-[#15171C] transition duration-300 hover:-translate-y-1 hover:border-[#B7FF00]/40"

@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
+import WorkoutProvider from "@/context/WorkoutContext";
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -38,9 +40,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar/>
-        {children}
-        <Footer/>
+        <WorkoutProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </WorkoutProvider>
+
+        <ToastContainer />
       </body>
     </html>
   );
