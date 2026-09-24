@@ -1,11 +1,65 @@
-import React from 'react';
+import type { IWorkout } from "@/types/workout";
+import { Oswald } from "next/font/google";
+import WorkoutCard from "@/components/shared/WorkoutCard";
 
-const WorkoutPage = () => {
+// const getWorkouts = async (): Promise<IWorkout[]> => {
+//   try {
+//     const response = await fetch(
+//       "https://api.abcz.workers.dev/api/fitlog"
+//     );
+
+//     if (!response.ok) {
+//       throw new Error("Failed to fetch workouts");
+//     }
+
+//     const data: IWorkout[] = await response.json();
+
+//     return data;
+//   } catch (error) {
+//     console.error("Error fetching workout data:", error);
+
+//     return [];
+//   }
+// };
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+});
+
+const getWorkouts = async () => {
+    try {
+        const response = await fetch("https://api.abcz.workers.dev/api/fitlog");
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching books data:", error);
+        return []
+    }
+}
+
+
+const WorkoutsPage = async () => {
+    const workouts = await getWorkouts();
+
     return (
-        <div>
-            Workout Page Rendering
-        </div>
+        <section className="bg-[#090A0D] py-10 sm:px-6 lg:px-8">
+            <div className="mx-auto px-6 max-w-7xl">
+
+                {/* ================= TITLE ================= */}
+                <h2 className={`${oswald.className} font-bold mb-12 text-3xl tracking-tight text-white`}>
+                    THE LIBRARY
+                </h2>
+
+                {/* ================= CARDS ================= */}
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {workouts.map((workout: IWorkout) => (
+                        <WorkoutCard key={workout.id} workout={workout} />
+                    ))}
+                </div>
+            </div>
+        </section>
     );
 };
 
-export default WorkoutPage;
+export default WorkoutsPage;

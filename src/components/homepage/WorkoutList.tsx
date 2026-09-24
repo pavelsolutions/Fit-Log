@@ -46,7 +46,7 @@ const getWorkouts = async () => {
 }
 
 
-const Library = async () => {
+const WorkoutList = async () => {
     const workouts = await getWorkouts();
 
     return (
@@ -69,4 +69,4 @@ const Library = async () => {
     );
 };
 
-export default Library;
+export default WorkoutList;
