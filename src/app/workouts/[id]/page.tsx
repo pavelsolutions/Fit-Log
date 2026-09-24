@@ -3,7 +3,6 @@ import SavedButton from "@/components/workoutDetails/SavedButton";
 import { IWorkout } from "@/types/workout";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { FaBookmark, FaCalendarPlus } from "react-icons/fa";
 
 interface IWorkoutDetailsProps {
     params: Promise<{
@@ -41,7 +40,7 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
 
     return (
         <main className="min-h-screen bg-[#0C0D10] px-4 py-10 text-white sm:px-6 lg:px-8">
-            <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr] lg:gap-11">
+            <div className="mx-auto px-6 grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr] lg:gap-11">
 
                 {/* ================= IMAGE ================= */}
                 <div className="relative h-[520px] overflow-hidden rounded-xl sm:h-[580px] lg:h-[563px]">
@@ -67,16 +66,17 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
                     </p>
 
                     {/* Muscle Groups */}
-                    <div className="mt-4 flex gap-2">
-                        <span className="rounded-full bg-[#C2F800] px-3 py-1 text-[10px] font-bold text-black">
-                            {workout.muscleGroups[0]}
-                        </span>
-
-                        <span className="rounded-full bg-[#C2F800] px-3 py-1 text-[10px] font-bold text-black">
-                            {workout.muscleGroups[1]}
-                        </span>
+                    {/* Muscle Groups */}
+                    <div className="mt-4 flex flex-wrap gap-2">
+                        {workout.muscleGroups.map((muscle:string) => (
+                            <span
+                                key={muscle}
+                                className="rounded-full bg-[#C2F800] px-3 py-1 text-[10px] font-bold text-black"
+                            >
+                                {muscle}
+                            </span>
+                        ))}
                     </div>
-
                     {/* ================= INFO CARD ================= */}
                     <div className="mt-6 overflow-hidden rounded-xl border border-[#292C31] bg-[#15171D]">
 
@@ -166,12 +166,12 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
 
                         <ol className="mt-3 space-y-3">
                             {
-                                workout.instructions.map((instruction:string, index:number) => 
+                                workout.instructions.map((instruction: string, index: number) =>
                                     <div key={index}>
                                         <li className="flex gap-3 text-xs leading-5 text-[#B0B5BF]">
-                                            <span>{index+1}.</span>
+                                            <span>{index + 1}.</span>
                                             <span>
-                                               {instruction}
+                                                {instruction}
                                             </span>
                                         </li>
                                     </div>
@@ -182,8 +182,8 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
 
                     {/* ================= BUTTONS ================= */}
                     <div className="mt-7 flex flex-wrap gap-3">
-                        <MyPlanButton workout={workout}/>
-                        <SavedButton  workout={workout}/>
+                        <MyPlanButton workout={workout} />
+                        <SavedButton workout={workout} />
                     </div>
                 </div>
             </div>

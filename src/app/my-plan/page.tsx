@@ -87,7 +87,7 @@ const MyPlan = () => {
 
   return (
     <section className="min-h-screen bg-[#0C0D10] px-5 py-10 text-white sm:px-8 lg:px-12">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto px-6 max-w-7xl">
 
         {/* ================= HEADER ================= */}
         <div>

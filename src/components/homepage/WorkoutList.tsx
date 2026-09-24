@@ -50,7 +50,7 @@ const WorkoutList = async () => {
     const workouts = await getWorkouts();
 
     return (
-        <section className="bg-[#090A0D] py-10 sm:px-6 lg:px-8">
+        <section id="library" className="bg-[#090A0D] py-10 sm:px-6 lg:px-8">
             <div className="mx-auto px-6 max-w-7xl">
 
                 {/* ================= TITLE ================= */}
