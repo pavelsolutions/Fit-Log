@@ -240,7 +240,7 @@ The main goals of FitLog are to:
 
 ## 👨‍💻 Author
 
-### Arham Zayeed
+### Pavel Ahammed
 
 Frontend Developer & MSc Data Science Student
 

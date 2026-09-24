@@ -16,10 +16,30 @@ const MyPlan = () => {
   // Sorting option
   const [sortBy, setSortBy] = useState<SortOption>("duration");
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   // Handle sorting
   const handleSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortBy(e.target.value as SortOption);
   };
+
+  const searchPlans = (plans: IWorkout[]) => {
+  if (!searchTerm.trim()) {
+    return plans;
+  }
+
+  const query = searchTerm.toLowerCase().trim();
+
+  return plans.filter((plan) => {
+    const workoutName = plan.name.toLowerCase();
+
+    const tags = plan.muscleGroups.some((tag) =>
+      tag.toLowerCase().includes(query)
+    );
+
+    return workoutName.includes(query) || tags;
+  });
+};
 
   // Sort workouts
   const sortPlans = (plans: IWorkout[]) => {
@@ -50,7 +70,8 @@ const MyPlan = () => {
     activeTab === "plan" ? myPlan : savedPlan;
 
   // Sort current list
-  const allPlan = sortPlans(planList);
+  const searchedPlans = searchPlans(planList);
+  const allPlan = sortPlans(searchedPlans);
 
   // Total minutes
   const totalMinutes = allPlan.reduce(
@@ -147,9 +168,32 @@ const MyPlan = () => {
             </button>
           </div>
 
+          
+
           {/* Sort */}
           <div className="flex items-center gap-3">
+              <div className="relative">
+  <input
+    type="text"
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    placeholder="Search workouts..."
+    className="w-full rounded-lg border border-[#292C31] bg-[#15171D] px-4 py-2 pl-10 text-xs text-white outline-none placeholder:text-[#858B97] focus:border-[#C2F800] sm:w-64"
+  />
 
+  <svg
+    className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#858B97]"
+    viewBox="0 0 24 24"
+    fill="none"
+  >
+    <path
+      d="m21 21-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+</div>
             <span className="text-xs text-[#858B97]">
               Sort By
             </span>
