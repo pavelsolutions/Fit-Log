@@ -1,4 +1,3 @@
-<img width="1600" height="2757" alt="fitlog" src="https://github.com/user-attachments/assets/549f7eb8-30ef-47c4-8469-d8d234d34bfb" />
 # 🏋️ FitLog
 
 ### Modern Workout Library & Personal Workout Planner
@@ -21,7 +20,7 @@ It allows users to explore workouts, search exercises, view detailed workout inf
 
 ## 📸 Project Preview
 
-![FitLog Preview](YOUR_SCREENSHOT_URL)
+<img width="1600" height="2757" alt="fitlog" src="https://github.com/user-attachments/assets/549f7eb8-30ef-47c4-8469-d8d234d34bfb" />
 
 ---
 
