@@ -1,8 +1,3 @@
-অবশ্যই। তোমার **FitLog** project-এর জন্য আমি এমন একটি README তৈরি করছি যেটা GitHub portfolio-তে professional দেখাবে এবং assignment requirement-ও পূরণ করবে।
-
-এটা সরাসরি তোমার `README.md` file-এ paste করতে পারো:
-
-````md
 # 🏋️ FitLog
 
 ### A Modern Workout Library & Personal Workout Planner
@@ -259,15 +254,11 @@ If you find this project useful or interesting, consider giving the repository a
 
 ````
 
-### তোমার শুধু এই ৩টা জিনিস replace করতে হবে
-
 **1. Live URL**
 
 ```md
 [Visit FitLog](YOUR_LIVE_URL)
 ````
-
-এর জায়গায় তোমার Vercel URL দেবে।
 
 **2. Screenshot**
 
@@ -275,14 +266,9 @@ If you find this project useful or interesting, consider giving the repository a
 ![FitLog Preview](YOUR_SCREENSHOT_URL)
 ```
 
-এখানে GitHub-এ upload করা screenshot-এর URL দিতে পারো।
 
 **3. GitHub repository URL**
 
 ```bash
 git clone YOUR_GITHUB_REPOSITORY_URL
 ```
-
-এখানে তোমার actual repository URL বসাবে।
-
-এটা assignment-এর **5 key features requirement**-ও পরিষ্কারভাবে satisfy করছে, আবার GitHub portfolio README হিসেবেও যথেষ্ট professional দেখাবে।
