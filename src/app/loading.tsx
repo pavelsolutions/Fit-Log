@@ -8,7 +8,7 @@ const Loading = () => {
 
         {/* Text */}
         <p className="font-[var(--font-oswald)] text-sm font-medium uppercase tracking-wider text-[#858B97]">
-          {/* Loading workouts... */}
+          Loading workouts...
         </p>
 
       </div>

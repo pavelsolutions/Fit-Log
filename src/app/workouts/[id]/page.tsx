@@ -1,6 +1,7 @@
 import MyPlanButton from "@/components/workoutDetails/MyPlanButton";
 import SavedButton from "@/components/workoutDetails/SavedButton";
 import { IWorkout } from "@/types/workout";
+import { Oswald } from "next/font/google";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -20,6 +21,12 @@ const getWorkouts = async () => {
         return []
     }
 }
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+});
+
 
 
 const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
@@ -43,7 +50,7 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
             <div className="mx-auto px-6 grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr] lg:gap-11">
 
                 {/* ================= IMAGE ================= */}
-                <div className="relative h-[520px] overflow-hidden rounded-xl sm:h-[580px] lg:h-[563px]">
+                <div className="relative h-130 overflow-hidden rounded-xl sm:h-145 lg:h-141">
                     <Image
                         src={workout.image}
                         alt={workout.name}
@@ -56,7 +63,7 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
                 <div className="flex flex-col">
 
                     {/* Title */}
-                    <h1 className="font-[var(--font-oswald)] text-3xl font-bold uppercase leading-none tracking-tight sm:text-4xl">
+                    <h1 className={`${oswald.className} text-3xl font-bold uppercase leading-none tracking-tight sm:text-4xl`}>
                         {workout.name}
                     </h1>
 

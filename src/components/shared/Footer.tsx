@@ -2,13 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 import logo from "@/assets/Vector.png";
+import { Oswald } from "next/font/google";
 
-import {
-  FaFacebookF,
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-} from "react-icons/fa";
+const oswald = Oswald({
+    subsets: ["latin"],
+    weight: ["600", "700"],
+});
 
 const Footer = () => {
   return (
@@ -29,13 +28,13 @@ const Footer = () => {
               className="h-10 w-10 object-contain"
             />
 
-            <span className="text-2xl font-bold tracking-wide text-white">
+            <span className={`${oswald.className} text-lg font-bold tracking-wide text-white`}>
               FITLOG
             </span>
           </Link>
 
           {/* Copyright */}
-          <p className="text-center text-xs text-gray-500 sm:text-right sm:text-sm">
+          <p className="text-center text-xs text-[#6B7280] sm:text-right sm:text-sm">
             © {new Date().getFullYear()} FitLog — Workout Library.
             <br className="sm:hidden" />
             <span className="sm:ml-1">
