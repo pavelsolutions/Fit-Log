@@ -23,8 +23,8 @@ const getWorkouts = async () => {
 }
 
 const oswald = Oswald({
-  subsets: ["latin"],
-  weight: ["600", "700"],
+    subsets: ["latin"],
+    weight: ["600", "700"],
 });
 
 
@@ -55,6 +55,7 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
                         src={workout.image}
                         alt={workout.name}
                         fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
                         className="object-cover"
                     />
                 </div>
@@ -75,7 +76,7 @@ const WorkoutDetails = async ({ params }: IWorkoutDetailsProps) => {
                     {/* Muscle Groups */}
                     {/* Muscle Groups */}
                     <div className="mt-4 flex flex-wrap gap-2">
-                        {workout.muscleGroups.map((muscle:string) => (
+                        {workout.muscleGroups.map((muscle: string) => (
                             <span
                                 key={muscle}
                                 className="rounded-full bg-[#C2F800] px-3 py-1 text-[10px] font-bold text-black"

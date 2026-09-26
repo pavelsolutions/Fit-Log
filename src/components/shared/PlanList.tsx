@@ -37,16 +37,81 @@ const PlanList = ({ plan, active }: IPlanListProps) => {
 
   // ================= MARK AS DONE =================
 
-  const handleMarkAsDone = () => {
-    toast.success("Workout logged - nice work");
+//   const handleMarkAsDone = () => {
+//     toast.success("Workout logged - nice work");
 
-    const remainingMyPlan = myPlan.filter(
-      (todayPlan) => todayPlan.id !== plan.id
-    );
+//     const remainingMyPlan = myPlan.filter(
+//       (todayPlan) => todayPlan.id !== plan.id
+//     );
 
-    setMyPlan(remainingMyPlan);
-  };
+//     setMyPlan(remainingMyPlan);
+//   };
 
+const handleMarkAsDone = () => {
+  // 1. Remove workout from today's plan
+  const remainingMyPlan = myPlan.filter(
+    (todayPlan) => todayPlan.id !== plan.id
+  );
+
+  setMyPlan(remainingMyPlan);
+
+  // 2. Update weekly calories and minutes
+  const today = new Date().toLocaleDateString("en-US", {
+    weekday: "short",
+  });
+
+  const storedWeekly = localStorage.getItem("fitlog-weekly");
+
+  const weeklyData = storedWeekly
+    ? JSON.parse(storedWeekly)
+    : [
+        { day: "Mon", calories: 0, minutes: 0 },
+        { day: "Tue", calories: 0, minutes: 0 },
+        { day: "Wed", calories: 0, minutes: 0 },
+        { day: "Thu", calories: 0, minutes: 0 },
+        { day: "Fri", calories: 0, minutes: 0 },
+        { day: "Sat", calories: 0, minutes: 0 },
+        { day: "Sun", calories: 0, minutes: 0 },
+      ];
+
+  const updatedWeekly = weeklyData.map(
+    (day: {
+      day: string;
+      calories: number;
+      minutes: number;
+    }) =>
+      day.day === today
+        ? {
+            ...day,
+            calories: day.calories + plan.caloriesBurned,
+            minutes: day.minutes + plan.duration,
+          }
+        : day
+  );
+
+  localStorage.setItem(
+    "fitlog-weekly",
+    JSON.stringify(updatedWeekly)
+  );
+
+  // 3. Update muscle groups
+  const storedMuscles = localStorage.getItem("fitlog-muscles");
+
+  const muscles: Record<string, number> = storedMuscles
+    ? JSON.parse(storedMuscles)
+    : {};
+
+  plan.muscleGroups.forEach((muscle) => {
+    muscles[muscle] = (muscles[muscle] || 0) + 1;
+  });
+
+  localStorage.setItem(
+    "fitlog-muscles",
+    JSON.stringify(muscles)
+  );
+
+  toast.success("Workout logged - nice work");
+};
   return (
     <div className="flex flex-col gap-4 rounded-xl border border-[#292C31] bg-[#15171D] p-3 sm:flex-row sm:items-center sm:justify-between">
       {/* ================= LEFT SIDE ================= */}
